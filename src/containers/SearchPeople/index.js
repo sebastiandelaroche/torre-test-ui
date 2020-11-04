@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 
 import Search from '../../components/Search';
 import List from '../../components/List';
@@ -8,6 +9,7 @@ import { selectPeopleSearched, selectPeopleIsLoading } from "../../store/people/
 import { transformPeopleToAcceptableListStructure } from "../../utils/transforms/people";
 
 const SearchPeople = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const people = useSelector(selectPeopleSearched);
   const isLoading = useSelector(selectPeopleIsLoading);
@@ -16,9 +18,16 @@ const SearchPeople = () => {
     dispatch(searchPeople(value));
   };
 
+  const onRowClickHandle = ({ username }) => {
+    history.push(`/person/${username}`);
+  };
+
   const content = isLoading ?
     <div>Loading ...</div> :
-    <List data={transformPeopleToAcceptableListStructure(people)} />;
+    <List
+      data={transformPeopleToAcceptableListStructure(people)}
+      onClick={onRowClickHandle}
+    />;
 
   return (
     <>
