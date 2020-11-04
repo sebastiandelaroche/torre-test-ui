@@ -1,6 +1,6 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 
-import { searchPeople } from './thunks';
+import { searchPeople, findPersonByUserName } from './thunks';
 
 export const peopleAdapter = createEntityAdapter();
 
@@ -8,6 +8,7 @@ export default createSlice({
   name: 'people',
   initialState: {
     people: [],
+    personSelected: null,
     isLoading: false,
     error: false,
   },
@@ -23,6 +24,19 @@ export default createSlice({
       return state;
     },
     [searchPeople.rejected]: (state, action) => {
+      state.isLoading = false;
+      return state;
+    },
+    [findPersonByUserName.pending]: (state, action) => {
+      state.isLoading = true;
+      return state;
+    },
+    [findPersonByUserName.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.personSelected = action.payload;
+      return state;
+    },
+    [findPersonByUserName.rejected]: (state, action) => {
       state.isLoading = false;
       return state;
     },

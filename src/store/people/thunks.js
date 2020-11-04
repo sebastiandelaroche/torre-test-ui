@@ -9,3 +9,12 @@ export const searchPeople = createAsyncThunk(
       .then(R.prop('data'));
   }
 );
+
+export const findPersonByUserName = createAsyncThunk(
+  'people/find-person-by-username',
+  (username) => {
+    return http.get(`/people/${username}/bio`)
+      .then(R.prop('data'));
+  }
+);
+

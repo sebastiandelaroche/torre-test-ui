@@ -1,12 +1,11 @@
 import { List as ListAntd, Avatar } from 'antd';
 
-const List = ({ data }) => {
-
-  return <ListAntd
+const List = ({ data, onClick }) => (
+  <ListAntd
     itemLayout="horizontal"
     dataSource={data}
     renderItem={item => (
-      <ListAntd.Item>
+      <ListAntd.Item onClick={() => onClick && onClick(item)} style={{ cursor: 'pointer' }}>
         <ListAntd.Item.Meta
           avatar={<Avatar src={item.avatar} />}
           title={<span>{item.title}</span>}
@@ -15,6 +14,6 @@ const List = ({ data }) => {
       </ListAntd.Item>
     )}
   />
-}
+);
 
 export default List;
