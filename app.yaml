@@ -1,0 +1,11 @@
+# [START runtime]
+runtime: nodejs12
+
+# [END runtime]
+handlers:
+- url: /(.*\.(gif|png|jpg|css|js|json|txt|woff2|svg|eot|ttf|woff|ico|jpeg)(|\.map))$
+  static_files: build/\1
+  upload: build/(.*)(|\.map)
+- url: /(.*)
+  static_files: build/index.html
+  upload: build/index.html

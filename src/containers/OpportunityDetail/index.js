@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Button } from 'antd';
+import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { findOpportunityById } from '../../store/opportunities/thunks';
@@ -9,12 +10,11 @@ import { Card, Col, Row } from 'antd';
 const { Meta } = Card;
 
 const OpportunityDetail = () => {
+  const history = useHistory();
   const params = useParams();
   const dispatch = useDispatch();
   const opportunity = useSelector(selectOpportunity);
   const isLoading = useSelector(selectOpportunitiesIsLoading);
-
-  console.log('opportunity', opportunity);
 
   useEffect(() => {
     dispatch(findOpportunityById(params.id));
@@ -33,6 +33,7 @@ const OpportunityDetail = () => {
 
   return (
     <>
+      <Button type="link" onClick={() => history.goBack()}>Back</Button>
       <div className="site-card-wrapper">
         <Row gutter={16}>
           <Col span={4}>

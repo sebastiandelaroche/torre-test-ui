@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Button } from 'antd';
+import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { findPersonByUserName } from '../../store/people/thunks';
@@ -9,6 +10,7 @@ import { Card, Col, Row } from 'antd';
 const { Meta } = Card;
 
 const PersonBio = () => {
+  const history = useHistory();
   const params = useParams();
   const dispatch = useDispatch();
   const person = useSelector(selectPerson);
@@ -34,6 +36,7 @@ const PersonBio = () => {
 
   return (
     <>
+      <Button type="link" onClick={() => history.goBack()}>Back</Button>
       <div className="site-card-wrapper">
         <Row gutter={16}>
           <Col span={3}>
