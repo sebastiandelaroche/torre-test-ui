@@ -1,28 +1,28 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 
-import { searchPeople } from './thunks';
+import { searchOpportunities } from './thunks';
 
 export const peopleAdapter = createEntityAdapter();
 
 export default createSlice({
-  name: 'people',
+  name: 'opportunities',
   initialState: {
-    people: [],
+    opportunities: [],
     isLoading: false,
     error: false,
   },
   reducers: {},
   extraReducers: {
-    [searchPeople.pending]: (state, action) => {
+    [searchOpportunities.pending]: (state, action) => {
       state.isLoading = true;
       return state;
     },
-    [searchPeople.fulfilled]: (state, action) => {
+    [searchOpportunities.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.people = action.payload;
+      state.opportunities = action.payload;
       return state;
     },
-    [searchPeople.rejected]: (state, action) => {
+    [searchOpportunities.rejected]: (state, action) => {
       state.isLoading = false;
       return state;
     },
