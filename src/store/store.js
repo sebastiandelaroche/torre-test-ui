@@ -1,5 +1,9 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
+
+import peopleReducer from './people/reducers';
 
 export default configureStore({
-  reducer: {},
+  reducer: {
+    people: peopleReducer
+  },
 });
