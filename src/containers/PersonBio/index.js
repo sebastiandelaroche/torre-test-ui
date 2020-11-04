@@ -14,8 +14,6 @@ const PersonBio = () => {
   const person = useSelector(selectPerson);
   const isLoading = useSelector(selectPeopleIsLoading);
 
-  console.log('person', person);
-
   useEffect(() => {
     dispatch(findPersonByUserName(params.username));
   }, []);
