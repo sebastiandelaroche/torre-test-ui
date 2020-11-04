@@ -9,3 +9,12 @@ export const searchOpportunities = createAsyncThunk(
       .then(R.prop('data'));
   }
 );
+
+export const findOpportunityById = createAsyncThunk(
+  'opportunities/find-by-id',
+  (id) => {
+    return http.get(`/opportunities/${id}`)
+      .then(R.prop('data'));
+  }
+);
+
